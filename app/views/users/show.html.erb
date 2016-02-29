@@ -2,3 +2,18 @@
     <%= gravatar_for @user %>
     <%= @user.name %>
 </h1>
+    <div class="col-md-6 col-md-offset-3">
+        <span class="label label-info">email</span>
+        <br/>
+        <%= @user.email %>
+        <br/>
+        <span class="label label-info">location</span>
+        <br/>
+        <%= @user.location %>
+        <br/>
+        <span class="label label-info">profile</span>
+        <br/>
+        <%= @user.profile %>
+        <br/>
+    </div>
+
