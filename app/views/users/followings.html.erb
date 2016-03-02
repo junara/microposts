@@ -1,0 +1,30 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-4"><%= link_to "Profile", user_path(params[:id]) %></div>
+        <div class="col-sm-4"><%= link_to "Followings", followings_path(params[:id]) %></div>
+        <div class="col-sm-4"><%= link_to "Followers", followers_path(params[:id]) %></div>
+      </div>
+    </div>
+    
+  </aside>
+  <div class="col-md-8">
+    <% if @followings.any? %>
+      <h3>フォローしている人は <%= @followings.count %>人です</h3>
+      <ol class="microposts">
+        <% @followings.each do |following| %>
+          <%= render partial: 'shared/following_list', locals: { following: following } %>
+        <% end %>
+      </ol>
+    <% end %>
+  </div>
+</div>
+
+

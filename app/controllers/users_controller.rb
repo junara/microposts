@@ -36,6 +36,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def followings #userがフォローしている人を取得する
+    @user = User.find(params[:id])
+    @followings = @user.following_users.order(created_at: :desc)
+
+    render 'followings'
+  end
+  
+  def followers #userがフォローされている人を取得する
+    @user = User.find(params[:id])
+    @followers = @user.follower_users.order(created_at: :desc)
+  end
+  
+  
+
   private
 
   def user_params
