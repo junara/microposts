@@ -1,0 +1,15 @@
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3"><%= link_to "Profile", user_path(params[:id]) %></div>
+    <div class="col-sm-3"><%= link_to "Followings", followings_path(params[:id]) %></div>
+    <div class="col-sm-3"><%= link_to "Followers", followers_path(params[:id]) %></div>
+    <div class="col-sm-3"><%= link_to "Favorites", favorites_path(params[:id]) %></div>
+  </div>
+</div>
+

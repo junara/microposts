@@ -9,4 +9,7 @@
                                     data: { confirm: "You sure?" } %>
         <% end %>
     </span>
+    <!--<div  id="like_btn">  like モデルをdestroyしたときこのdivを目印部分的なhtml書き換えをしたかった。しかし、ローカル変数のエラーを克服できず断念。に-->
+    <%= render partial: 'users/like_btn', locals: { micropost: micropost } %>
+    <!--</div>-->
 </li>

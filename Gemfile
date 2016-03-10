@@ -29,6 +29,18 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'pry-byebug', group: :development
 
+#Amazon S3に画像をアップロード　http://blog.kakeragames.com/2016/02/03/heroku-paperclip-s3.html
+gem 'paperclip', :git => 'https://github.com/thoughtbot/paperclip.git'
+gem 'aws-sdk', '>= 2.0.0'
+
+
+#fakerでダミーファイルを作成
+gem 'faker'
+
+#will_paginateでページ送りを作る
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

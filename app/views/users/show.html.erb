@@ -1,20 +1,6 @@
 <div class="row">
   <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-4"><%= link_to "Profile", user_path(params[:id]) %></div>
-    <div class="col-sm-4"><%= link_to "Followings", followings_path(params[:id]) %></div>
-    <div class="col-sm-4"><%= link_to "Followers", followers_path(params[:id]) %></div>
-  </div>
-</div>
-
-
+<%= render 'profile_left' %>
   </aside>
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
@@ -23,6 +9,7 @@
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
+      <%= will_paginate @microposts, :renderer => BootstrapPagination::Rails %>
     <% end %>
   </div>
 </div>

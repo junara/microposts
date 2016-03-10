@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   def show 
     @user = User.find(params[:id])
     @microposts = @user.microposts.order(created_at: :desc)
+       .paginate(:page => params[:page], :per_page => 5) #will_paginateを使用し、5投稿毎にページ訳
   end
 
   def new
@@ -39,16 +40,22 @@ class UsersController < ApplicationController
   def followings #userがフォローしている人を取得する
     @user = User.find(params[:id])
     @followings = @user.following_users.order(created_at: :desc)
-
+       .paginate(:page => params[:page], :per_page => 5) #will_paginateを使用し、5投稿毎にページ訳
     render 'followings'
   end
   
   def followers #userがフォローされている人を取得する
     @user = User.find(params[:id])
     @followers = @user.follower_users.order(created_at: :desc)
+       .paginate(:page => params[:page], :per_page => 5) #will_paginateを使用し、5投稿毎にページ訳
   end
   
-  
+  def favorites #userがlikeしているmicropostを取得する
+    @user = User.find(params[:id])
+    @favorites = @user.like_microposts.order(created_at: :desc)
+       .paginate(:page => params[:page], :per_page => 5) #will_paginateを使用し、5投稿毎にページ訳
+    render 'favorites'
+  end
 
   private
 

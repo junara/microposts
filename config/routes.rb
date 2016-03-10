@@ -16,5 +16,9 @@ Rails.application.routes.draw do
   
   get '/users/:id/followings' , to: 'users#followings', as: 'followings'
   get '/users/:id/followers' , to: 'users#followers', as: 'followers' #as以下を単数か複数かは迷ってわからなかった。
+
   
+  resources :likes, only: [:create, :destroy]
+  get '/users/:id/favorites' , to: 'users#favorites', as: 'favorites'
+ 
 end

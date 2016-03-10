@@ -1,0 +1,16 @@
+<div class="row">
+  <aside class="col-md-4">
+<%= render 'profile_left' %>
+  </aside>
+  <div class="col-md-8">
+      <h3>お気に入りは <%= @favorites.count %>人です</h3>
+      <ol class="microposts">
+        <% @favorites.each do |favorite| %>
+          <%= render partial: 'microposts/micropost', locals: { micropost: favorite } %>
+        <% end %>
+      </ol>
+      <%= will_paginate @favorites, :renderer => BootstrapPagination::Rails %>
+  </div>
+</div>
+
+

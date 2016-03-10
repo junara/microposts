@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
     
     has_many :microposts
 
+    # フォロー　用の　リレーション
     has_many :following_relationships, class_name:  "Relationship",
                                      foreign_key: "follower_id",
                                      dependent:   :destroy
@@ -21,7 +22,11 @@ class User < ActiveRecord::Base
                                     foreign_key: "followed_id",
                                     dependent:   :destroy
     has_many :follower_users, through: :follower_relationships, source: :follower  
-
+    
+    # お気に入り　用の　リレーション
+    has_many :likes, dependent: :destroy ,foreign_key: "liker_id"
+    has_many :like_microposts , through: :likes , source: :micropost_ref
+    
     # 他のユーザーをフォローする
     def follow(other_user)
         following_relationships.find_or_create_by(followed_id: other_user.id)
@@ -41,4 +46,16 @@ class User < ActiveRecord::Base
     def feed_items
         Micropost.where(user_id: following_user_ids + [self.id])
     end
+    
+    #お気に入りの投稿を追加
+    def like_add(other_micropost)
+        likes.find_or_create_by(likedmicropost_id: other_micropost.id)
+    end
+    
+    # お気に入りをキャンセルする
+    def like_del(other_micropost)
+        like = likes.find_by(likedmicropost_id: other_micropost.id)
+        like.destroy if like
+    end
+    
 end
