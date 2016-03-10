@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
     
     has_many :microposts
 
-    # フォロー　用の　リレーション
+    # フォロー機能　用の　リレーション
     has_many :following_relationships, class_name:  "Relationship",
                                      foreign_key: "follower_id",
                                      dependent:   :destroy
